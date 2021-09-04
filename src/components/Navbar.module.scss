@@ -1,12 +1,91 @@
 .navbar {
   color: white;
+  background-color: var(--navbar-color);
 
+  // ------------ container --------------
   .container {
     display: flex;
     justify-content: space-between;
-    padding: 0 3rem;
-    img {
-      height: 2rem;
+    align-items: center;
+    padding: 8px;
+    height: 70px;
+
+    .left {
+      display: flex;
+      align-items: center;
+      margin-left: 35px;
+      img {
+        height: 40px;
+        margin-right: 20px;
+        cursor: pointer;
+      }
+
+      span {
+        margin-right: 25px;
+        cursor: pointer;
+      }
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+      margin-right: 35px;
+      img {
+        height: 30px;
+        cursor: pointer;
+        margin: 5px;
+      }
+
+      .search {
+        margin-right: 20px;
+      }
+
+      // ------------ profile --------------
+      .profile {
+        .icon {
+          padding-bottom: 20px;
+          padding-top: 20px;
+        }
+
+         // ------------ options --------------
+        .options {
+          border-radius: 3px;
+          display: none;
+          top: 70px;
+          right: 40px;
+        }
+
+        .options_left {
+          display: flex;
+          flex-direction: column;
+          border-right: #414c53 1px solid;
+        }
+
+        .options_right {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .options_left__signout {
+          padding-bottom: 20px;
+        }
+
+        &:hover,
+        .options:hover {
+          .options {
+            display: flex;
+            flex-direction: row;
+            position: absolute;
+            background-color: #252e39;
+          }
+
+          span {
+            padding-left: 20px;
+            padding-top: 20px;
+            width: 202px;
+          }
+        }
+      }
     }
   }
 }
