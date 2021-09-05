@@ -1,0 +1,57 @@
+.listItem {
+  width: 276px;
+  height: 167px;
+  // background-color: linear-gradient(180deg, #1b2530 0, rgba(27, 37, 48, 0.85));
+  background-color: #1b2530;
+  margin-right: 10px;
+  overflow: hidden;
+  cursor: pointer;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .itemInfo {
+    background-color: #1b2530;
+    color: #e7e9ec;
+  }
+
+  &:hover {
+    position: absolute;
+    z-index: 49;
+    width: 300px;
+    height: 380px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    img {
+      height: 170px;
+    }
+
+    .itemInfo {
+      padding: 20px;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    div {
+      margin-bottom: 10px;
+    }
+
+    .icons {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+    }
+
+    .footer_elements {
+      margin-right: 10px;
+    }
+  }
+}

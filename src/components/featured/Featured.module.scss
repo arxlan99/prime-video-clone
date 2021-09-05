@@ -1,0 +1,27 @@
+.featured {
+  top: 80px;
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+
+  .image {
+    span {
+      cursor: pointer;
+    }
+    .iconLeft {
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      transform: scale(1.6) translateY(-50%);
+    }
+
+    .iconRight {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: scale(1.6) translateY(-50%);
+    }
+  }
+}
