@@ -1,20 +1,29 @@
 .featured {
-  top: 80px;
+  top: 60px;
   position: relative;
-
-  img {
-    width: 100%;
-  }
-
+  z-index: 2;
   .image {
     span {
       cursor: pointer;
     }
+
+    .imageList {
+      display: flex;
+      width: max-content;
+      transition: all 1s;
+
+      img {
+        width: 100vw;
+      }
+    }
+
     .iconLeft {
       position: absolute;
       top: 50%;
       left: 20px;
       transform: scale(1.6) translateY(-50%);
+      color: "#EFF1F1";
+      z-index: 100;
     }
 
     .iconRight {
@@ -22,6 +31,8 @@
       top: 50%;
       right: 20px;
       transform: scale(1.6) translateY(-50%);
+      color: "#EFF1F1";
+      z-index: 100;
     }
   }
 }

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classes from "./List.module.scss";
 import ListItem from "./ListItem";
 
@@ -10,23 +10,32 @@ const List = () => {
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
 
+  const [listItems, setListItems] = useState(null);
+
   const listRef = useRef();
 
-  const sliderHandler = (direction) => {
+  const slideHandler = (direction) => {
     let distance = listRef.current.getBoundingClientRect().x - 50;
-    console.log(distance);
     if (direction === "left" && slideNumber > 0) {
-      listRef.current.style.transform = `translateX(${298 * 4 + distance}px) `;
+      listRef.current.style.transform = `translateX(${276 * 4 + distance}px) `;
       setSlideNumber(slideNumber - 1);
       setShowLeftArrow(false);
       setShowRightArrow(true);
     } else if (direction === "right" && slideNumber < 1) {
-      listRef.current.style.transform = `translateX(${-298 * 4 + distance}px) `;
+      listRef.current.style.transform = `translateX(${-276 * 4 + distance}px) `;
       setSlideNumber(slideNumber + 1);
       setShowLeftArrow(true);
       setShowRightArrow(false);
     }
   };
+
+  useEffect(() => {
+    let elements = [];
+    for (let i = 0; i < 8; i++) {
+      elements[i] = <ListItem index={i} />;
+    }
+    setListItems(elements);
+  }, []);
 
   return (
     <div className={classes.list}>
@@ -35,23 +44,16 @@ const List = () => {
         {showLeftArrow && (
           <ArrowBackIosIcon
             className={`${classes.sliderArrow} ${classes.left} `}
-            onClick={() => sliderHandler("left")}
+            onClick={() => slideHandler("left")}
           />
         )}
         <div className={classes.container} ref={listRef}>
-          <ListItem index={0} />
-          <ListItem index={1} />
-          <ListItem index={2} />
-          <ListItem index={3} />
-          <ListItem index={4} />
-          <ListItem index={5} />
-          <ListItem index={6} />
-          <ListItem index={7} />
+          {listItems}
         </div>
         {showRightArrow && (
           <ArrowForwardIosIcon
             className={`${classes.sliderArrow} ${classes.right} `}
-            onClick={() => sliderHandler("right")}
+            onClick={() => slideHandler("right")}
           />
         )}
       </div>
