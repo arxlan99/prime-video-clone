@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import classes from "./List.module.scss";
 import ListItem from "./ListItem";
 
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
-const List = () => {
+const List = (props) => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
@@ -28,18 +28,10 @@ const List = () => {
       setShowRightArrow(false);
     }
   };
-
-  useEffect(() => {
-    let elements = [];
-    for (let i = 0; i < 8; i++) {
-      elements[i] = <ListItem index={i} />;
-    }
-    setListItems(elements);
-  }, []);
-
+  console.log(props.list);
   return (
     <div className={classes.list}>
-      <span className={classes.listTitle}>Continue watching</span>
+      <span className={classes.listTitle}>{props.list.title}</span>
       <div className={classes.wrapper}>
         {showLeftArrow && (
           <ArrowBackIosIcon
@@ -48,7 +40,9 @@ const List = () => {
           />
         )}
         <div className={classes.container} ref={listRef}>
-          {listItems}
+          {/*  {props.list.map((item, i) => (
+            <ListItem index={i} item={item} />
+          ))}*/}
         </div>
         {showRightArrow && (
           <ArrowForwardIosIcon

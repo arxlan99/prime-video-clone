@@ -3,6 +3,7 @@ import React from "react";
 import classes from "./Navbar.module.scss";
 import userImage from "../../assets/images/user.png";
 import logoImage from "../../assets/images/logo.PNG";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -11,8 +12,12 @@ const Navbar = () => {
         <div className={classes.left}>
           <img src={logoImage} alt="logo" />
           <span>Home</span>
-          <span>Tv Shows</span>
-          <span>Movies</span>
+          <Link to="/series" className="link">
+            <span>Tv Shows</span>
+          </Link>
+          <Link to="/movies" className="link">
+            <span>Movies</span>
+          </Link>
           <span>Kids</span>
         </div>
         <div className={classes.right}>

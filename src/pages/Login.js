@@ -1,5 +1,7 @@
 import React from "react";
-import LoginNavbar from "../components/navbar/LoginNavbar";
+import LoginNavbar from "../components/Navbar/LoginNavbar";
+import { Link } from "react-router-dom";
+
 import classes from "./Login.module.scss";
 import backImage1 from "../assets/images/back1.jpg";
 import backImage2 from "../assets/images/back2.jpg";
@@ -18,13 +20,18 @@ const Login = () => {
               award-winning Amazon Originals. Amazon Prime also includes free
               and fast delivery on thousands of items and more.
             </p>
-            <button>Prime Member? Sign in</button>
+            <Link to="/register">
+              <button>Prime Member? Sign in</button>
+            </Link>
             <br />
-            <button>Start Your 30-day free trial</button>
+            <Link to="/register">
+              <button>Start Your 30-day free trial</button>
+            </Link>
+
             <br />
 
             <span>
-              * After 30 days, Amazon Prime automatically renews at TRY
+              * After 30 days, Amazon Prime automatically renews at USD
               7,90/month.
             </span>
           </div>

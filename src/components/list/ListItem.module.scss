@@ -20,11 +20,10 @@
 
   &:hover {
     position: absolute;
-    z-index: 49;
     width: 300px;
     height: 380px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-
+    border-radius: 3px;
     img {
       height: 170px;
     }

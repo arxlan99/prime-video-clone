@@ -1,15 +1,43 @@
 import Home from "./pages/Home";
-import "./App.scss";
 import Stream from "./pages/Stream";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import { Fragment } from "react/cjs/react.production.min";
 
-function App() {
+const App = () => {
+  const user = true;
   return (
-    <div className="App">
-      <Login />
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          {user ? <Home /> : <Redirect to="/register" />}
+        </Route>
+        <Route path="/register">
+          {!user ? <Register /> : <Redirect to="/" />}
+        </Route>
+        <Route path="/login">{!user ? <Login /> : <Redirect to="/" />}</Route>
+        {user && (
+          <Fragment>
+            <Route path="/movies">
+              <Home type="movies" />
+            </Route>
+            <Route path="/series">
+              <Home type="series" />
+            </Route>
+            <Route path="/stream">
+              <Stream />
+            </Route>
+          </Fragment>
+        )}
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;

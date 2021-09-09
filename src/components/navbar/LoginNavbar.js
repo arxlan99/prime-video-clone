@@ -2,6 +2,7 @@ import { ArrowDropDown } from "@material-ui/icons";
 import React from "react";
 import classes from "./Navbar.module.scss";
 import logoImage from "../../assets/images/logo.PNG";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -29,7 +30,9 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-          <span className={classes.sign}>Sign In</span>
+          <Link to="/register">
+            <span className={classes.sign}>Sign In</span>
+          </Link>
         </div>
       </div>
     </div>
