@@ -1,0 +1,23 @@
+.footer {
+  ul {
+    list-style: none;
+  }
+
+  height: 200px;
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .title {
+    font-size: 32px;
+  }
+
+  .content {
+    display: flex;
+    li {
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
+}
