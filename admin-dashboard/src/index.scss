@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+
+.link {
+  text-decoration: "none";
+  color: white;
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
+}

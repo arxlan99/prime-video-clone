@@ -1,14 +1,18 @@
+
+
 .app {
   display: flex;
   flex-direction: row;
 
   .container {
-    flex: 1;
+    position: relative;
     display: flex;
     flex-direction: column;
+    left: 300px;
+    transition: all 0.5s;
+  }
 
-    .content {
-      flex: 1;
-    }
+  .sidebar {
+    position: fixed;
   }
 }

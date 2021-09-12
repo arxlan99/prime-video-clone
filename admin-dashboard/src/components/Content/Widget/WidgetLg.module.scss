@@ -1,0 +1,59 @@
+.widget {
+  flex: 2;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 20px;
+  margin-right: 20px;
+
+  .lgTitle {
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  .lgTable {
+    width: 100%;
+    border-spacing: 20px;
+
+    .lgTh {
+      text-align: left;
+    }
+
+    .lgTr {
+      .lgUser {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+      }
+      .lgImg {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 10px;
+      }
+
+      .lgDate,
+      .lgAmount {
+        font-weight: 300;
+      }
+
+      .lgButton {
+        padding: 5px 7px;
+        border: none;
+        border-radius: 10px;
+      }
+
+      .lgButton.Approved {
+        background-color: #e5faf2;
+        color: #3bb077;
+      }
+      .lgButton.Declined {
+        background-color: #fff0f1;
+        color: #d95087;
+      }
+      .lgButton.Pending {
+        background-color: #ebf1fe;
+        color: #2a7ade;
+      }
+    }
+  }
+}

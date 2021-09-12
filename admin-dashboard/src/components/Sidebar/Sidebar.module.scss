@@ -1,8 +1,10 @@
 .sidebar {
+  position: relative;
+  transition: all 0.5s;
   .sidebarContainer {
     background-color: #0f172a;
     width: 300px;
-    max-height: calc(100vh);
+    height: 100vh;
     overflow-y: auto;
 
     &::-webkit-scrollbar {
@@ -20,9 +22,23 @@
       padding: 20px;
       color: rgb(241, 238, 238);
 
-      .menu {
+      .divider {
+        margin-top: 15px;
         margin-bottom: 15px;
+        border: 0;
+        height: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      }
 
+      .title {
+        h2 {
+          margin-top: 5px;
+          text-align: center;
+        }
+      }
+
+      .menu {
         .title {
           font-size: 0.9rem;
           margin-left: 5px;
@@ -32,18 +48,18 @@
         }
 
         .listItem {
-          font-size: 0.9rem;
+          font-size: 1rem;
           display: flex;
           justify-content: flex-start;
           align-items: center;
-          padding: 8px;
+          padding: 6px;
           margin-bottom: 2px;
           cursor: pointer;
           border-radius: 5px;
           transition: all 0.4s;
           .icons {
             margin-right: 15px;
-            font-size: 22px;
+            font-size: 26px;
             color: #64748b;
           }
 
@@ -57,7 +73,7 @@
           background-color: #2c3344;
           .icons {
             margin-right: 15px;
-            font-size: 22px;
+            font-size: 26px;
             color: white;
           }
         }
