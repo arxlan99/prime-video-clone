@@ -4,7 +4,7 @@ import { DeleteOutline, IsoOutlined } from "@material-ui/icons";
 import { productRows } from "../../data/dummyData";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import classes from "./ProductList.module.scss";
+import classes from "./MovieList.module.scss";
 import { Fragment } from "react";
 
 const ProductList = () => {
@@ -17,8 +17,8 @@ const ProductList = () => {
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
     {
-      field: "product",
-      headerName: "Product",
+      field: "movie",
+      headerName: "Movie",
       width: 200,
       renderCell: (params) => {
         return (
@@ -51,7 +51,7 @@ const ProductList = () => {
       renderCell: (params) => {
         return (
           <Fragment>
-            <Link to={"/product/" + params.row.id}>
+            <Link to={"/movie/" + params.row.id}>
               <button className={classes.productListEdit}>Edit</button>
             </Link>
             <DeleteOutline

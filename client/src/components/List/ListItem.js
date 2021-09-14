@@ -20,7 +20,7 @@ const ListItem = (props) => {
         const res = await axios.get("/movies/find/" + props.item, {
           headers: {
             token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2EwNGZjOWQ5Y2Y3MDMwYWNmYjQyOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzMTM2MDAxMiwiZXhwIjoxNjMxMzc4MDEyfQ.MYYyQwqIKqXt0EZcxPmHwbX3_qpUpq5vzyWsjuXnwwI",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2EwNGZjOWQ5Y2Y3MDMwYWNmYjQyOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzMTQ2MTg5MCwiZXhwIjoxNjMxNDc5ODkwfQ.4BI1Rustck9twHoLLGq2zynp-ztE4baN3bPgWSUE6UE",
           },
         });
         setMovie(res.data);
@@ -33,7 +33,11 @@ const ListItem = (props) => {
 
   return (
     <motion.div
-      whileHover={{ scale: 1.1, zIndex: 200, x: -10 }}
+      whileHover={{
+        scale: 1.1,
+        zIndex: 200,
+        x: -10,
+      }}
       className="container"
     >
       <Link to={{ pathname: "/stream", movie: movie }}>

@@ -63,10 +63,10 @@ const Sidebar = (props) => {
                   <span>Users</span>
                 </li>
               </Link>
-              <Link className="link" to="/products">
+              <Link className="link" to="/movies">
                 <li className={classes.listItem}>
                   <ShoppingCartIcon className={classes.icons} />
-                  <span>Products</span>
+                  <span>Movies</span>
                 </li>
               </Link>
 

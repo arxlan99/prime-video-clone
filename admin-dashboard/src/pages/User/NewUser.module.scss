@@ -55,14 +55,14 @@
   }
 
   .UserButton {
-    width: 200px;
+    width: 180px;
     border: none;
     background-color: darkblue;
     color: white;
-    padding: 7px 10px;
+    padding: 0;
+    margin-top: 32px;
     font-weight: 600;
-    border-radius: 10px;
-    margin-top: 30px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 1.1rem;
   }

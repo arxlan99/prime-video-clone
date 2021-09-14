@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./Product.module.scss";
+import classes from "./Movie.module.scss";
 import { Link } from "react-router-dom";
 import Chart from "../../components/Content/Chart/Chart";
 import { productData } from "../../data/dummyData";
@@ -10,7 +10,7 @@ const Product = () => {
     <div className={classes.product}>
       <div className={classes.productTitleContainer}>
         <h1 className={classes.productTitle}>Product</h1>
-        <Link to="/newproduct">
+        <Link to="/newmovie">
           <button className={classes.productAddButton}>Create</button>
         </Link>
       </div>

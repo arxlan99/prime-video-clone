@@ -6,13 +6,15 @@
 .productTitleContainer {
   display: flex;
   align-items: center;
+  margin-left: 20px;
   justify-content: space-between;
 }
 
 .productAddButton {
   width: 80px;
   border: none;
-  padding: 5px;
+  padding: 10px;
+  margin-right: 20px;
   background-color: teal;
   color: white;
   border-radius: 5px;

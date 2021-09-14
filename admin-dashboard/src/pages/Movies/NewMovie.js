@@ -1,10 +1,10 @@
 import React from "react";
-import classes from "./NewProduct.module.scss";
+import classes from "./NewMovie.module.scss";
 
 const NewProduct = () => {
   return (
     <div className={classes.newProduct}>
-      <h1 className={classes.addProductTitle}>New Product</h1>
+      <h1 className={classes.addProductTitle}>New Movie</h1>
       <form className={classes.addProductForm}>
         <div className={classes.addProductItem}>
           <label>Image</label>

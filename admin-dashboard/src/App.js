@@ -1,5 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useContext, useEffect, useRef, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import classes from "./App.module.scss";
 
 import Topbar from "./components/Navbar/Topbar";
@@ -9,58 +14,70 @@ import Home from "./pages/Home";
 import NewUser from "./pages/User/NewUser";
 import User from "./pages/User/User";
 import UserList from "./pages/User/UserList";
-import Product from "./pages/Product/Product";
-import NewProduct from "./pages/Product/NewProduct";
-import ProductList from "./pages/Product/ProductList";
+import Movie from "./pages/Movies/Movie";
+import NewMovie from "./pages/Movies/NewMovie";
+import MovieList from "./pages/Movies/MovieList";
+import Login from "./pages/Login/Login";
+import { AuthContext } from "./store/context/auth-context";
+import { Fragment } from "react";
 
 const App = () => {
   const [showSidebar, setShowSidebar] = useState(true);
   const containerRef = useRef();
 
+  const { user } = useContext(AuthContext);
+
   useEffect(() => {
-    if (showSidebar === false) {
-      containerRef.current.style.width = "100%";
-      containerRef.current.style.left = "0";
-    } else {
-      containerRef.current.style.width = "calc(100% - 300px)";
-      containerRef.current.style.height = "100vh";
-      containerRef.current.style.left = "300px";
+    if (containerRef.current !== undefined) {
+      if (showSidebar === false) {
+        containerRef.current.style.width = "100%";
+        containerRef.current.style.left = "0";
+      } else {
+        containerRef.current.style.width = "calc(100% - 300px)";
+        containerRef.current.style.height = "100vh";
+        containerRef.current.style.left = "300px";
+      }
     }
-  }, [showSidebar]);
+  }, [showSidebar, containerRef]);
 
   return (
     <Router>
-      <div className={classes.app}>
-        <div className={classes.sidebar}>
-          <Sidebar sidebar={showSidebar} />
-        </div>
-        <div className={classes.container} ref={containerRef}>
-          <Topbar onToggle={setShowSidebar} currentState={showSidebar} />
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/users">
-              <UserList />
-            </Route>
-            <Route path="/user/:userId">
-              <User />
-            </Route>
-            <Route path="/newuser">
-              <NewUser />
-            </Route>
-            <Route path="/products">
-              <ProductList />
-            </Route>
-            <Route path="/product/:productId">
-              <Product />
-            </Route>
-            <Route path="/newproduct">
-              <NewProduct />
-            </Route>
-          </Switch>
-        </div>
-      </div>
+      <Switch>
+        <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
+        {user && (
+          <Fragment>
+            <div className={classes.app}>
+              <div className={classes.sidebar}>
+                <Sidebar sidebar={showSidebar} />
+              </div>
+              <div className={classes.container} ref={containerRef}>
+                <Topbar onToggle={setShowSidebar} currentState={showSidebar} />
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route path="/users">
+                  <UserList />
+                </Route>
+                <Route path="/user/:userId">
+                  <User />
+                </Route>
+                <Route path="/newuser">
+                  <NewUser />
+                </Route>
+                <Route path="/movies">
+                  <MovieList />
+                </Route>
+                <Route path="/movie/:movieId">
+                  <Movie />
+                </Route>
+                <Route path="/newmovie">
+                  <NewMovie />
+                </Route>
+              </div>
+            </div>
+          </Fragment>
+        )}
+      </Switch>
     </Router>
   );
 };
