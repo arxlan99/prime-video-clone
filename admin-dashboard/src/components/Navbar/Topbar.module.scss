@@ -67,3 +67,24 @@
     }
   }
 }
+
+.profile {
+  height: 50px;
+  .profileSettings {
+    color: black;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    background-color: rgb(245, 245, 245);
+    right: 7px;
+    top: 60px;
+    border-radius: 3px;
+    padding: 10px 20px;
+    span:hover {
+      cursor: pointer;
+    }
+  }
+  &:hover .profileSettings {
+    display: flex;
+  }
+}

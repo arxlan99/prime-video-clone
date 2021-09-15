@@ -1,4 +1,9 @@
-import { LOGIN_FAILURE, LOGIN_START, LOGIN_SUCCESS } from "../actions/auth";
+import {
+  LOGIN_FAILURE,
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  LOGOUT,
+} from "../actions/auth";
 
 const AuthReducer = (state, action) => {
   switch (action.type) {
@@ -19,6 +24,12 @@ const AuthReducer = (state, action) => {
         user: null,
         isFetching: false,
         error: true,
+      };
+    case LOGOUT:
+      return {
+        user: null,
+        isFetching: false,
+        error: false,
       };
     default:
       return {

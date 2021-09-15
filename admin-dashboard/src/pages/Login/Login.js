@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import classes from "./Login.module.scss";
-import { AuthContext } from "../../store/context/auth-context";
+import { AuthContext } from "../../store/auth-context";
 
 import axios from "axios";
 import {
@@ -21,11 +21,15 @@ const Login = () => {
     authCtx.dispatchAuth(loginStart());
     try {
       const res = await axios.post("/login", { email, password });
-      res.data.isAdmin &&
-        (await authCtx.dispatchAuth(loginSucess({ email, password })));
+      const userInfo = {
+        email: res.data.email,
+        accessToken: res.data.accessToken,
+      };
+      res.data.isAdmin && (await authCtx.dispatchAuth(loginSucess(userInfo)));
 
       console.log(res.data);
     } catch (error) {
+      console.log(error.message);
       authCtx.dispatchAuth(loginFailure());
     }
   };

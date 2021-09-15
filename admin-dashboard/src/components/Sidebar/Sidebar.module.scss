@@ -1,6 +1,7 @@
 .sidebar {
   position: relative;
   transition: all 0.5s;
+  z-index: 999;
   .sidebarContainer {
     background-color: #111827;
     width: 300px;

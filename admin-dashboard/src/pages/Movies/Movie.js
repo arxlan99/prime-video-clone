@@ -1,49 +1,47 @@
 import React from "react";
 import classes from "./Movie.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Chart from "../../components/Content/Chart/Chart";
 import { productData } from "../../data/dummyData";
-import { Publish } from "@material-ui/icons";
+import { MovieSharp, Publish } from "@material-ui/icons";
 
 const Product = () => {
+  const location = useLocation();
+  const movie = location.movie;
   return (
     <div className={classes.product}>
       <div className={classes.productTitleContainer}>
-        <h1 className={classes.productTitle}>Product</h1>
+        <h1 className={classes.productTitle}>Movie</h1>
         <Link to="/newmovie">
           <button className={classes.productAddButton}>Create</button>
         </Link>
       </div>
       <div className={classes.productTop}>
         <div className={classes.productTopLeft}>
-          <Chart data={productData} dataKey="Sales" title="Sales Performance" />
+          <Chart data={productData} dataKey="Sales" title="Movie Performance" />
         </div>
         <div className={classes.productTopRight}>
           <div className={classes.productInfoTop}>
-            <img
-              src="https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-              alt=""
-              className={classes.productInfoImg}
-            />
+            <img src={movie.img} alt="" className={classes.productInfoImg} />
 
-            <span className={classes.productName}>Apple Airpods</span>
+            <span className={classes.productName}>{movie.title}</span>
           </div>
           <div className={classes.productInfoBottom}>
             <div className={classes.productInfoItem}>
               <span className={classes.productInfoKey}>id:</span>
-              <span className={classes.productInfoValue}>123</span>
+              <span className={classes.productInfoValue}>{movie._id}</span>
             </div>
             <div className={classes.productInfoItem}>
-              <span className={classes.productInfoKey}>sales:</span>
-              <span className={classes.productInfoValue}>5123</span>
+              <span className={classes.productInfoKey}>genre:</span>
+              <span className={classes.productInfoValue}>{movie.genre}</span>
             </div>
             <div className={classes.productInfoItem}>
-              <span className={classes.productInfoKey}>active:</span>
-              <span className={classes.productInfoValue}>yes</span>
+              <span className={classes.productInfoKey}>year:</span>
+              <span className={classes.productInfoValue}>{movie.year}</span>
             </div>
             <div className={classes.productInfoItem}>
-              <span className={classes.productInfoKey}>in stock:</span>
-              <span className={classes.productInfoValue}>no</span>
+              <span className={classes.productInfoKey}>limit:</span>
+              <span className={classes.productInfoValue}>{movie.limit}</span>
             </div>
           </div>
         </div>
@@ -51,23 +49,23 @@ const Product = () => {
       <div className={classes.productBottom}>
         <form className={classes.productForm}>
           <div className={classes.productFormLeft}>
-            <label>Product Name</label>
-            <input placeholder={classes.Apple} />
-            <label>In Stock</label>
-            <select name={classes.inStock} id={classes.idStock}>
-              <option value={classes.yes}>Yes</option>
-              <option value={classes.no}>No</option>
-            </select>
-            <label>Active</label>
-            <select name={classes.active} id={classes.active}>
-              <option value={classes.yes}>Yes</option>
-              <option value={classes.no}>No</option>
-            </select>
+            <label>Movie Title</label>
+            <input type="text" placeholder={movie.title} />
+            <label>Year</label>
+            <input type="text" placeholder={movie.year} />
+            <label>Genre</label>
+            <input type="text" placeholder={movie.genre} />
+            <label>Limit</label>
+            <input type="text" placeholder={movie.limit} />
+            <label>Trailer</label>
+            <input type="file" placeholder={movie.trailer} />
+            <label>Video</label>
+            <input type="file" placeholder={movie.video} />
           </div>
           <div className={classes.productFormRight}>
             <div className={classes.productUpload}>
               <img
-                src="https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                src={movie.img}
                 alt=""
                 className={classes.productUploadImg}
               />

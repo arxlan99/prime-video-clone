@@ -1,9 +1,16 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import {
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  useLayoutEffect,
+} from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
+  useHistory,
 } from "react-router-dom";
 import classes from "./App.module.scss";
 
@@ -18,11 +25,27 @@ import Movie from "./pages/Movies/Movie";
 import NewMovie from "./pages/Movies/NewMovie";
 import MovieList from "./pages/Movies/MovieList";
 import Login from "./pages/Login/Login";
-import { AuthContext } from "./store/context/auth-context";
+import { AuthContext } from "./store/auth-context";
 import { Fragment } from "react";
 
+const useWindowSize = () => {
+  const [size, setSize] = useState([0, 0]);
+  useLayoutEffect(() => {
+    const updateSize = () => {
+      setSize([window.innerWidth, window.innerHeight]);
+    };
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+  return size;
+};
+
 const App = () => {
-  const [showSidebar, setShowSidebar] = useState(true);
+  const history = useHistory();
+
+  const [width, height] = useWindowSize();
+  const [showSidebar, setShowSidebar] = useState(false);
   const containerRef = useRef();
 
   const { user } = useContext(AuthContext);
@@ -40,13 +63,23 @@ const App = () => {
     }
   }, [showSidebar, containerRef]);
 
+  useEffect(() => {
+    if (width >= 1100) {
+      setShowSidebar(true);
+    } else if (width < 1100 && width > 820) {
+      setShowSidebar(false);
+    } else if (width < 820) {
+    }
+  }, [width]);
+
   return (
     <Router>
       <Switch>
         <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
+        {!user && <Redirect to="/login" />}
         {user && (
           <Fragment>
-            <div className={classes.app}>
+            <div id="app" className={classes.app}>
               <div className={classes.sidebar}>
                 <Sidebar sidebar={showSidebar} />
               </div>
