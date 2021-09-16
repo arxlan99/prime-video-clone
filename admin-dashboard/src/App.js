@@ -27,6 +27,9 @@ import MovieList from "./pages/Movies/MovieList";
 import Login from "./pages/Login/Login";
 import { AuthContext } from "./store/auth-context";
 import { Fragment } from "react";
+import MainList from "./pages/List/MainList";
+import List from "./pages/List/List";
+import NewList from "./pages/List/NewList";
 
 const useWindowSize = () => {
   const [size, setSize] = useState([0, 0]);
@@ -105,6 +108,15 @@ const App = () => {
                 </Route>
                 <Route path="/newmovie">
                   <NewMovie />
+                </Route>
+                <Route path="/lists">
+                  <MainList />
+                </Route>
+                <Route path="/list/:listId">
+                  <List />
+                </Route>
+                <Route path="/newlist">
+                  <NewList />
                 </Route>
               </div>
             </div>

@@ -1,46 +1,96 @@
-import React from "react";
-import LoginNavbar from "../components/Navbar/LoginNavbar";
-import { Link } from "react-router-dom";
-
+import React, { useContext, useState } from "react";
 import classes from "./Login.module.scss";
-import backImage1 from "../assets/images/back1.jpg";
-import backImage2 from "../assets/images/back2.jpg";
-import backImage3 from "../assets/images/back3.jpg";
+import registerLogo from "../assets/images/registerLogo.png";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../store/auth-context";
+import { loginFailure, loginStart, loginSuccess } from "../store/actions/auth";
+import axios from "axios";
 
-const Login = () => {
+const Register = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { isFetching, dispatchAuth } = useContext(AuthContext);
+
+  const loginHandler = (e) => {
+    e.preventDefault();
+    const login = async () => {
+      dispatchAuth(loginStart());
+      try {
+        const res = await axios.post("/login", { email, password });
+        dispatchAuth(loginSuccess(res.data));
+      } catch (err) {
+        dispatchAuth(loginFailure());
+        alert(err);
+      }
+    };
+    login();
+  };
+
   return (
-    <div className={classes.login}>
-      <LoginNavbar />
+    <div className={classes.register}>
       <div className={classes.container}>
-        <div className={classes.firstImage}>
+        <div className={classes.logo}>
+          <img src={registerLogo} alt="register" />
+        </div>
+        <div className={classes.formContainer}>
+          <h2>Sign-In</h2>
+          <label htmlFor="email">Email</label>
           <div>
-            <h1>Amazon Prime is now in Turkey.</h1>
-            <p>
-              Join Amazon Prime to watch popular movies and TV shows, including
-              award-winning Amazon Originals. Amazon Prime also includes free
-              and fast delivery on thousands of items and more.
-            </p>
-            <Link to="/register">
-              <button>Prime Member? Sign in</button>
-            </Link>
-            <br />
-            <Link to="/register">
-              <button>Start Your 30-day free trial</button>
-            </Link>
-
-            <br />
-
-            <span>
-              * After 30 days, Amazon Prime automatically renews at USD
-              7,90/month.
-            </span>
+            <input
+              className={classes.email}
+              type="email"
+              id="email"
+              name="email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
-          <img src={backImage1} alt="background1" />
+          <label htmlFor="password">Password</label>
+          <div>
+            <input
+              className={classes.password}
+              type="password"
+              id="password"
+              name="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              className={classes.signIn}
+              type="submit"
+              value="Sign-In"
+              onClick={loginHandler}
+              disabled={isFetching}
+            />
+          </div>
+          <div>
+            By continuing, you agree to{" "}
+            <a href="!#">Amazon's Conditions of Use and Privacy Notice.</a>
+          </div>
+          <div>
+            <input type="checkbox" id="signed" />
+            <label htmlFor="signed"> Keep me signed in.</label>
+          </div>
+          <div>
+            <Link to="/signup">
+              <input
+                className={classes.createButton}
+                type="submit"
+                value="Create your Amazon account"
+              />
+            </Link>
+          </div>
         </div>
       </div>
-      <div className={classes.footer}></div>
+      <div className={classes.footer}>
+        <ul>
+          <li> Conditions of Use </li>
+          <li> Privacy Notice </li> <li> Help </li>
+        </ul>
+        <div>© 1996-2021, Amazon.com, Inc. or its affiliates</div>
+      </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;

@@ -1,5 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import classes from "./NewMovie.module.scss";
+import storage from "../../firebase";
+import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage";
+import { MovieContext } from "../../store/movie-context";
+import {
+  createMovieFailure,
+  createMovieStart,
+  createMovieSuccess,
+} from "../../store/actions/movie";
+import axios from "axios";
 
 const NewProduct = () => {
   const [movie, setMovie] = useState(null);
@@ -10,13 +19,51 @@ const NewProduct = () => {
   const [video, setVideo] = useState(null);
   const [uploaded, setUploaded] = useState(0);
 
+  const { dispatchMovies } = useContext(MovieContext);
+
   const changeHandler = (e) => {
     const value = e.target.value;
     setMovie({ ...movie, [e.target.name]: value });
   };
 
+  useEffect(() => {
+    console.log("------------------------");
+    console.log(movie);
+    console.log("------------------------");
+  }, [movie]);
+
   const upload = (items) => {
-  
+    const metadata = {
+      contentType: "image/jpeg",
+    };
+    items.forEach((item) => {
+      const fileName =
+        new Date().getTime() + item.label || "test" + item.file.name || "test2";
+
+      const storageRef = ref(storage, `items/${fileName}`);
+      const uploadTask = uploadBytesResumable(storageRef, item.file, metadata);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+            console.log("File available at", url);
+            setMovie((prev) => {
+              return { ...prev, [item.label]: url };
+            });
+            setUploaded((prev) => prev + 1);
+          });
+        }
+      );
+    });
   };
 
   const uploadHandler = (e) => {
@@ -30,10 +77,23 @@ const NewProduct = () => {
     ]);
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
+    dispatchMovies(createMovieStart());
+    try {
+      const res = await axios.post("/movies", movie, {
+        headers: {
+          token:
+            "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+        },
+      });
+      dispatchMovies(createMovieSuccess(res.data));
+      alert("Movie has been created :)");
+    } catch (err) {
+      dispatchMovies(createMovieFailure());
+      alert(err + " !!!");
+    }
   };
-
 
   return (
     <div className={classes.newProduct}>
@@ -154,7 +214,7 @@ const NewProduct = () => {
           ) : (
             <button
               className={classes.addProductButton}
-              onClick={submitHandler}
+              onClick={uploadHandler}
             >
               Upload
             </button>

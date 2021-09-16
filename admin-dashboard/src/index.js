@@ -4,11 +4,14 @@ import "./index.scss";
 import App from "./App";
 import { AuthContextProvider } from "./store/auth-context";
 import { MovieContextProvider } from "./store/movie-context";
+import { ListContextProvider } from "./store/list-context";
 
 ReactDOM.render(
   <AuthContextProvider>
     <MovieContextProvider>
-      <App />
+      <ListContextProvider>
+        <App />
+      </ListContextProvider>
     </MovieContextProvider>
   </AuthContextProvider>,
   document.getElementById("root")

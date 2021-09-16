@@ -53,9 +53,12 @@ const Featured = (props) => {
     <div className={classes.featured}>
       {props.type && (
         <div className={classes.category}>
-          <span>{props.type === "movies" ? "Movies" : "Series"}</span>
-          <select name="genre" id="genre">
-            <option>Genre</option>
+          <span>{props.type === "movie" ? "Movies" : "Series"}</span>
+          <select
+            name="genre"
+            id="genre"
+            onChange={(e) => props.setGenre(e.target.value)}
+          >
             <option value="adventure">Adventure</option>
             <option value="comedy">Comedy</option>
             <option value="crime">Crime</option>

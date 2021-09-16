@@ -20,7 +20,7 @@ const ListItem = (props) => {
         const res = await axios.get("/movies/find/" + props.item, {
           headers: {
             token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2EwNGZjOWQ5Y2Y3MDMwYWNmYjQyOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzMTQ2MTg5MCwiZXhwIjoxNjMxNDc5ODkwfQ.4BI1Rustck9twHoLLGq2zynp-ztE4baN3bPgWSUE6UE",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2EwNGZjOWQ5Y2Y3MDMwYWNmYjQyOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzMTgwOTUxOSwiZXhwIjoxNjMxODI3NTE5fQ.q1oZWmGHqMbNyORviDgdecjwgrWj245HI9SZtRL4Ey4",
           },
         });
         setMovie(res.data);
@@ -37,6 +37,10 @@ const ListItem = (props) => {
         scale: 1.1,
         zIndex: 200,
         x: -10,
+        transition: { duration: 0.2 },
+      }}
+      onHoverStart={(e) => {
+        setTimeout(() => {}, 500);
       }}
       className="container"
     >

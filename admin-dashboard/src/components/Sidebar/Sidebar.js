@@ -12,6 +12,8 @@ import FeedbackIcon from "@material-ui/icons/Feedback";
 import MessageIcon from "@material-ui/icons/Message";
 import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
 import ReceiptIcon from "@material-ui/icons/Receipt";
+import ListIcon from "@material-ui/icons/List";
+
 import { Link } from "react-router-dom";
 
 const Sidebar = (props) => {
@@ -69,11 +71,13 @@ const Sidebar = (props) => {
                   <span>Movies</span>
                 </li>
               </Link>
+              <Link className="link" to="/lists">
+                <li className={classes.listItem}>
+                  <ListIcon className={classes.icons} />
+                  <span>Lists</span>
+                </li>
+              </Link>
 
-              <li className={classes.listItem}>
-                <AttachMoneyIcon className={classes.icons} />
-                <span>Transaction</span>
-              </li>
               <li className={classes.listItem}>
                 <AssessmentIcon className={classes.icons} />
                 <span>Reports</span>

@@ -30,7 +30,7 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-          <Link to="/register">
+          <Link to="/login">
             <span className={classes.sign}>Sign In</span>
           </Link>
         </div>

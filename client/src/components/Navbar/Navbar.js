@@ -3,9 +3,16 @@ import React from "react";
 import classes from "./Navbar.module.scss";
 import userImage from "../../assets/images/user.png";
 import logoImage from "../../assets/images/logo.PNG";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Navbar = () => {
+  const history = useHistory();
+  const signoutHandler = () => {
+    localStorage.removeItem("user");
+    // history.push("/adhome");
+    window.location.reload();
+  };
+
   return (
     <div className={classes.navbar}>
       <div className={classes.container}>
@@ -35,7 +42,12 @@ const Navbar = () => {
                 <span>Account and Setting</span>
                 <span>Watch Anywhere </span>
                 <span>Help</span>
-                <span className={classes.options_left__signout}>Sign Out</span>
+                <span
+                  onClick={signoutHandler}
+                  className={classes.options_left__signout}
+                >
+                  Sign Out
+                </span>
               </div>
               <div className={classes.options_right}>
                 <span>Kids</span>

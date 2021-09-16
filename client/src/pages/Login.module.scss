@@ -1,41 +1,103 @@
-.login {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  overflow: hidden;
-  box-sizing: border-box;
-  img {
-    width: 100%;
-    padding: 0;
-    margin: 0;
+.register {
+  margin-top: 15px;
+
+  li {
+    list-style: none;
+  }
+  .container {
+    width: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .formContainer {
+      border: 1px solid #dddddd;
+      box-shadow: 0 1px 1px 0.2px rgb(153, 153, 153);
+      border-radius: 3px;
+      padding: 25px;
+
+      h2 {
+        margin-top: 0;
+      }
+
+      div {
+        margin-bottom: 12px;
+        box-sizing: border-box;
+      }
+
+      .signIn {
+        background-color: #f3cb6a;
+        border: 0;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 5px;
+        height: 100%;
+        width: 100%;
+        outline: 0;
+        box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+          rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+        transition: all 0.3s;
+      }
+
+      .email {
+        width: 97%;
+        height: 28px;
+        border-radius: 3px;
+        border-color: #f3f2f2;
+      }
+
+      .password {
+        width: 97%;
+        height: 28px;
+        border-radius: 3px;
+        border-color: #f3f2f2;
+      }
+
+      .createButton {
+        background-color: #eff1f3;
+        border: 0;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 5px;
+        height: 100%;
+        width: 100%;
+        outline: 0;
+        box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+          rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+        transition: all 0.3s;
+
+        margin-top: 20px;
+      }
+
+      .signIn:hover {
+        background-color: #f0c561;
+      }
+
+      .createButton:hover {
+        background-color: #e8eaec;
+      }
+    }
   }
 
-  .container {
-    position: relative;
+  .footer {
+    height: 180px;
     width: 100%;
-    top: 80px;
-    color: white;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(247, 247, 247);
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 
-    .firstImage {
-      div {
-        font-size: 1.3rem;
-        margin-top: 90px;
-        width: 700px;
-        right: 0;
-        position: absolute;
-        font-weight: 200;
-        display: flex;
-        flex-direction: column;
-
-        button {
-          font-family: "Ember-Medium";
-          font-size: 1.1rem;
-          color: white;
-          width: 300px;
-          padding: 20px;
-          background-color: #1889c2;
-          cursor: pointer;
-        }
+    ul {
+      display: flex;
+      li {
+        display: span;
+        margin-right: 10px;
       }
     }
   }
