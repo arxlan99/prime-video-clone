@@ -15,22 +15,24 @@ const Home = (props) => {
       console.log(props.type);
       try {
         if (props.type === undefined) {
-          const res = await axios(`/lists`, {
+          const res = await axios(`${process.env.REACT_APP_API_URL}/lists`, {
             headers: {
               token:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2EwNGZjOWQ5Y2Y3MDMwYWNmYjQyOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzMTgwOTUxOSwiZXhwIjoxNjMxODI3NTE5fQ.q1oZWmGHqMbNyORviDgdecjwgrWj245HI9SZtRL4Ey4",
+                "Bearer " +
+                JSON.parse(localStorage.getItem("user")).accessToken,
             },
           });
           setLists(res.data);
         } else {
           const res = await axios(
-            `/lists/${props.type ? "?type=" + props.type : ""}&${
+            `${process.env.REACT_APP_API_URL}/lists/${props.type ? "?type=" + props.type : ""}&${
               props.genre ? "genre =" + props.genre : ""
             }`,
             {
               headers: {
                 token:
-                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2EwNGZjOWQ5Y2Y3MDMwYWNmYjQyOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzMTgwOTUxOSwiZXhwIjoxNjMxODI3NTE5fQ.q1oZWmGHqMbNyORviDgdecjwgrWj245HI9SZtRL4Ey4",
+                  "Bearer " +
+                  JSON.parse(localStorage.getItem("user")).accessToken,
               },
             }
           );

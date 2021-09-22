@@ -25,7 +25,7 @@ const MainList = () => {
     const getLists = async () => {
       dispatchList(getListsStart());
       try {
-        const res = await axios.get("/lists", {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/lists`, {
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
@@ -43,7 +43,7 @@ const MainList = () => {
   const deleteHandler = async (id) => {
     dispatchList(deleteListStart());
     try {
-      await axios.delete("/lists/" + id, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/lists/` + id, {
         headers: {
           token:
             "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,

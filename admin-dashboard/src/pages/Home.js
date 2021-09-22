@@ -28,7 +28,7 @@ const Content = () => {
   useEffect(() => {
     const getStats = async () => {
       try {
-        const res = await axios.get("/user/stats", {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/stats`, {
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,

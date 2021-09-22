@@ -21,7 +21,7 @@ const Signup = () => {
     setUsername(usernameRef.current.value);
 
     try {
-      const res = await axios.post("/register", { email, username, password });
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/register`, { email, username, password });
       console.log(res);
       history.push("/login");
     } catch (error) {

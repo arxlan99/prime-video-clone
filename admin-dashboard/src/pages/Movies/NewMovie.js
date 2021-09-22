@@ -81,7 +81,7 @@ const NewProduct = () => {
     e.preventDefault();
     dispatchMovies(createMovieStart());
     try {
-      const res = await axios.post("/movies", movie, {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/movies`, movie, {
         headers: {
           token:
             "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,

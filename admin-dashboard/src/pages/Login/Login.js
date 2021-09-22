@@ -17,10 +17,12 @@ const Login = () => {
 
   const loginHandler = async (e) => {
     e.preventDefault();
-
     authCtx.dispatchAuth(loginStart());
     try {
-      const res = await axios.post("/login", { email, password });
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
+        email,
+        password,
+      });
       const userInfo = {
         email: res.data.email,
         accessToken: res.data.accessToken,

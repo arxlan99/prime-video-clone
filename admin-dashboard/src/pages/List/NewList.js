@@ -26,7 +26,7 @@ const NewList = () => {
     const getMovies = async () => {
       dispatchMovies(getMoviesStart());
       try {
-        const res = await axios.get("/movies", {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/movies`, {
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
@@ -56,7 +56,7 @@ const NewList = () => {
     const createList = async (list) => {
       dispatchList(createListStart());
       try {
-        const res = await axios.post("/lists", list, {
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/lists`, list, {
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,

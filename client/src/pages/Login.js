@@ -16,7 +16,10 @@ const Register = () => {
     const login = async () => {
       dispatchAuth(loginStart());
       try {
-        const res = await axios.post("/login", { email, password });
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
+          email,
+          password,
+        });
         dispatchAuth(loginSuccess(res.data));
       } catch (err) {
         dispatchAuth(loginFailure());

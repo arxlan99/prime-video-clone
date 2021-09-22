@@ -17,12 +17,16 @@ const ListItem = (props) => {
   useEffect(() => {
     const getMovies = async () => {
       try {
-        const res = await axios.get("/movies/find/" + props.item, {
-          headers: {
-            token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2EwNGZjOWQ5Y2Y3MDMwYWNmYjQyOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzMTgwOTUxOSwiZXhwIjoxNjMxODI3NTE5fQ.q1oZWmGHqMbNyORviDgdecjwgrWj245HI9SZtRL4Ey4",
-          },
-        });
+        const res = await axios.get(
+          `${process.env.REACT_APP_API_URL}/movies/find/` + props.item,
+          {
+            headers: {
+              token:
+                "Bearer " +
+                JSON.parse(localStorage.getItem("user")).accessToken,
+            },
+          }
+        );
         setMovie(res.data);
       } catch (error) {
         console.log(error);

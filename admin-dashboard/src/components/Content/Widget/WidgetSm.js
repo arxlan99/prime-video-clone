@@ -9,12 +9,16 @@ const WidgetSm = () => {
   useEffect(() => {
     const getNewUsers = async () => {
       try {
-        const res = await axios.get("/users?new=true", {
-          headers: {
-            token:
-              "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-          },
-        });
+        const res = await axios.get(
+          `${process.env.REACT_APP_API_URL}/users?new=true`,
+          {
+            headers: {
+              token:
+                "Bearer " +
+                JSON.parse(localStorage.getItem("user")).accessToken,
+            },
+          }
+        );
         setNewUsers(res.data);
       } catch (error) {
         console.log(error);

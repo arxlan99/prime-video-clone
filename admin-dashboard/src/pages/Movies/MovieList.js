@@ -27,7 +27,7 @@ const ProductList = () => {
     const getMovie = async () => {
       dispatchMovies(getMoviesStart);
       try {
-        const res = await axios.get("/movies", {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/movies`, {
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
@@ -46,7 +46,7 @@ const ProductList = () => {
     const deleteMovie = async () => {
       dispatchMovies(deleteMovieStart);
       try {
-        await axios.delete("/movies/" + id, {
+        await axios.delete(`${process.env.REACT_APP_API_URL}/movies/` + id, {
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
